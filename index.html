@@ -19,9 +19,16 @@
 		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
 
 		<link rel="stylesheet" href="lib/zenburn.css">
+		
+		<link rel="stylesheet" href="css/extras.css">
+		
 	</head>
 	
 	<body>
+	
+		<div id="onTop">
+			<p>Some text</p>
+		</div>
 		
 		<div id="reveal">
 
@@ -32,7 +39,7 @@
 			<div class="slides">
 				<section>
 					<h1>Reveal.js</h1>
-					<h3 class="inverted">CSS 3D Presentations</h3>
+					<h3 class="inverted">CSS 3D Presentations thing</h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
@@ -303,6 +310,9 @@ linkify( 'a' );
 
 			hljs.initHighlightingOnLoad();
 		</script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="js/extras.js"></script>
 
 	</body>
 </html>
