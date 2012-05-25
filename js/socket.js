@@ -14,10 +14,22 @@ socket.addEvent('message', function(data) {
 $(document).ready(function() {
     console.log("I'm about to connect");
     connect();
+    
+    connectionReady();
+    
 });
 
+function connectionReady() {
+    if (ws.readyState != 1) {
+        setTimeout(connectionReady, 500);
+        console.log("round again");
+    } else {
+        send("yay");
+    }
+}
+
 function connect() {
-    ws = new WebSocket("ws://ccpc-twn.bath.ac.uk:9000/echoSocket?name=TestUser");
+    ws = new WebSocket("ws://ccpc-twn.bath.ac.uk:9000/echoSocket");
     //ws = new WebSocket("ws://ccpc-twn.bath.ac.uk:9000/helloSocket?name=TestUser");
 
     ws.onopen = function(evt) { 
@@ -35,10 +47,15 @@ function connect() {
     ws.onerror = function(evt) {
         console.log("error: " + evt.data);
     }
+    
 }
 
 function disconnect() {
     ws.close();
+}
+
+function send(words) {
+    ws.send(words);
 }
 
 
