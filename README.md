@@ -1,7 +1,7 @@
 # Forked to see about integrating websockets to have a live stream in a presentation.
 
-Added the socket.io library from:
-https://github.com/learnboost/socket.io
+Intended to be used with
+https://github.com/tomnatt/reveal-websocket
 
 Original README below...
 
