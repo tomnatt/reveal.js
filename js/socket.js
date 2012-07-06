@@ -1,16 +1,5 @@
 // SET UP SOCKET
 
-/*
-var socket = new io.Socket(null, {rememberTransport: false, port: 9000});
-socket.connect();
-socket.addEvent('message', function(data) {
-
-    console.log(data);
-    
-});
-// END SET UP SOCKET
-*/
-
 $(document).ready(function() {
     console.log("I'm about to connect");
     connect();
@@ -24,13 +13,12 @@ function connectionReady() {
         setTimeout(connectionReady, 500);
         console.log("round again");
     } else {
-        send("yay");
+        // ready
     }
 }
 
 function connect() {
-    ws = new WebSocket("ws://ccpc-twn.bath.ac.uk:9000/echoSocket");
-    //ws = new WebSocket("ws://ccpc-twn.bath.ac.uk:9000/helloSocket?name=TestUser");
+    ws = new WebSocket("ws://localhost:9000/echoSocket");
 
     ws.onopen = function(evt) { 
         console.log("connected");
@@ -41,7 +29,7 @@ function connect() {
     }
 
     ws.onmessage = function(evt) {
-        console.log("response: " + evt.data);
+        doSomething(evt.data);
     }
 
     ws.onerror = function(evt) {
@@ -56,6 +44,25 @@ function disconnect() {
 
 function send(words) {
     ws.send(words);
+}
+
+// respond to incoming signals
+function doSomething(data) {
+
+    if (data == "move up") { 
+        // up 
+        Reveal.navigateUp();
+    } else if (data == "move left") {
+        // left
+        Reveal.navigateLeft();
+    } else if (data == "move down") {
+        // down
+        Reveal.navigateDown();
+    } else if (data == "move right") {
+        // right
+        Reveal.navigateRight();
+    }
+    
 }
 
 
