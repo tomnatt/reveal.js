@@ -8,14 +8,18 @@ $(document).ready(function() {
     
 });
 
+count = 0;
 function connectionReady() {
-    if (ws1.readyState != 1) {
+    if (count > 20) {
+        console.log("giving up");
+    } else if (ws1.readyState != 1) {
+        count++;
         setTimeout(connectionReady, 500);
-        console.log("round again");
     } else {
         // ready
     }
 }
+
 
 function connectControl() {
     ws1 = new WebSocket("ws://localhost:8080/");
