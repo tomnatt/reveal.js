@@ -2,14 +2,14 @@
 
 $(document).ready(function() {
     console.log("I'm about to connect");
-    connect();
+    connectControl();
     
     connectionReady();
     
 });
 
 function connectionReady() {
-    if (ws.readyState != 1) {
+    if (ws1.readyState != 1) {
         setTimeout(connectionReady, 500);
         console.log("round again");
     } else {
@@ -17,33 +17,33 @@ function connectionReady() {
     }
 }
 
-function connect() {
-    ws = new WebSocket("ws://localhost:9000/echoSocket");
+function connectControl() {
+    ws1 = new WebSocket("ws://localhost:8080/");
 
-    ws.onopen = function(evt) { 
+    ws1.onopen = function(evt) { 
         console.log("connected");
     }
 
-    ws.onclose = function(evt) {
+    ws1.onclose = function(evt) {
         console.log("disconnected");
     }
 
-    ws.onmessage = function(evt) {
+    ws1.onmessage = function(evt) {
         doSomething(evt.data);
     }
 
-    ws.onerror = function(evt) {
+    ws1.onerror = function(evt) {
         console.log("error: " + evt.data);
     }
     
 }
 
 function disconnect() {
-    ws.close();
+    ws1.close();
 }
 
 function send(words) {
-    ws.send(words);
+    ws1.send(words);
 }
 
 // respond to incoming signals
